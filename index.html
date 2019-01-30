@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Second Order System</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="./dist/custom.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <style>
+        
+        .btn-outline-secondary{
+            border-color: rgb(206,212,218);
+        }
+    
+    .navbar-perso{
+        border-bottom: 1px solid rgb(206,212,218);
+    }
+    
+    .ui_tool, .ui_home{
+         vertical-align: baseline;
+    }
+    </style>
+  </head>
+  <body>
+      <div id="app">
+          <nav class="navbar navbar-expand-sm bg-light navbar-light navbar-perso">
+              <a class="navbar-brand" href="https://www.enib.fr"><img style="max-width:80px;margin-top:0px;margin-bottom: 0px;" src="./dist/enib.jpg"></a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#globalNavbar" aria-controls="globalNavbar" aria-expanded="true" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="globalNavbar">
+                  <ul class="navbar-nav">
+                      <li>System Identification</li>
+                  </ul>
+                  
+              </div>
+          </nav>
+          <div class="container">
+              <div class="row">
+                  <div class="col text-right">
+                      
+                      <div id="chart_ui" style="display:inline;">
+                          <button class="btn btn-outline-secondary ui_home"><i class="fas fa-home"></i></button>
+                          <div class="btn-group btn-group-toggle ui_tool" data-toggle="buttons">
+                              <label class="btn btn-outline-secondary active">
+                                  <input type="radio" name="options" value="zoom" autocomplete="off" class="radioClass" checked><i class="fas fa-search"></i>
+                             </label>
+                              <label class="btn btn-outline-secondary">
+                                  <input type="radio" name="options" value="marker" autocomplete="off" class="radioClass"> <i class="fas fa-crosshairs"></i>
+                              </label>
+                          </div>
+                      </div>
+                      
+                      <select class="custom-select" id="file_selector" style="width: 200px;">
+                          <option value="data/data0.csv">System 1</option>
+                          <option value="data/data1.csv">System 2</option>
+                          <option value="data/data2.csv">System 3</option>
+                          <option value="data/data3.csv">System 4</option>
+                          <option value="data/data4.csv">System 5</option>
+                          <option value="data/data5.csv">System 6</option>
+                          <option value="data/data6.csv">System 7</option>
+                      </select>
+                  </div>
+              </div>
+              <div id="chart_container" style="width:100%; height:600px;"></div>
+          </div>
+      </div>
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+      <script src="https://code.highcharts.com/highcharts.js"></script>
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+      <script src="./dist/custom.js" ></script>
+      <script>
+          $(function () {
+            var myChart = Highcharts.chart("chart_container",
+                {
+                   chart: {type: 'line',zoomType: "xy",
+                            resetZoomButton: {theme: {display: 'none'}},
+                            selectionMarkerFill: "rgba(45, 62, 79,0.15)"
+                        },
+                   title: {text: ''},
+                   xAxis: { title: {text: "Frequency (Hz)"},type: "logarithmic",},
+                   yAxis: [{title:{text:"module"},type: "logarithmic"},
+                           {title:{text:"phase"},opposite: true}
+                           ],
+                   series: [{
+                            enableMouseTracking: false,
+                            name: "Amplitude",
+                            yAxis: 0,
+                            color: "#e26856",
+                            data: [[0.1, 0],[1, 0]]
+                            },
+                            {
+                            enableMouseTracking: false,
+                            name: "Phase",
+                            color: "#EF889D",
+                            yAxis: 1,
+                            data: [[0.1, 0],[1, 0]]
+                            },
+                            
+                            ]
+                   });
+            
+            $("#file_selector").on("change", function() {
+               $.ajax({
+                      type: "GET",
+                      url: this.value,
+                      dataType: "text",
+                      success: function(allText) {
+                        var allTextLines = allText.split(/\r\n|\n/);
+                        var module =[];
+                        var argument =[];
+                      
+                        for (var i = 1; i < allTextLines.length; i++)
+                            {
+                            var data = allTextLines[i].split(',');
+                            module.push([parseFloat(data[0]),parseFloat(data[1])]);
+                            argument.push([parseFloat(data[0]),parseFloat(data[2])]);
+                            }
+                        myChart.series[0].update({data: module}, true);
+                        myChart.series[1].update({data: argument}, true);
+                        }
+                      });
+               });
+            
+            $("#file_selector").trigger("change");
+            
+            var interaction=chart_interaction(myChart,"chart_ui");
+            
+            
+            });
+            
+        </script>
+  </body>
+</html>
