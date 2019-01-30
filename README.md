@@ -4,4 +4,4 @@ A simple web application for the frequency analysis of 1st and 2nd order systems
 
 ## Demonstration
 
-* https://vincentchoqueuse.github.io/web_app_2nd_order_identification/
+* https://vincentchoqueuse.github.io/web_app_2nd_order_identification/index.html
