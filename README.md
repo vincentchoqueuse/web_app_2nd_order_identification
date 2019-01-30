@@ -1,18 +1,3 @@
-# 2nd_order_vue
+# web_app_2nd_order_identification
 
-> A Vue.js project
-
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-```
-
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+A simple web application for the frequency analysis of 1st and 2nd order systems. This web app uses csv files for storing the frequency response of 1st and 2nd order systems. This csv files can be generated from the python script in the python folder
