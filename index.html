@@ -2,6 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Second Order System</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <link rel="stylesheet" href="./dist/custom.css">
@@ -31,7 +33,7 @@
 
                 
                 
-          <nav class="navbar navbar-expand-sm bg-light navbar-light navbar-perso">
+          <nav class="navbar navbar-expand-xs bg-light navbar-light navbar-perso">
               <a class="navbar-brand" href="https://www.enib.fr"><img style="max-width:80px;margin-top:0px;margin-bottom: 0px;" src="./dist/enib.jpg"></a>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#globalNavbar" aria-controls="globalNavbar" aria-expanded="true" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
               </button>
@@ -39,7 +41,6 @@
                   <ul class="navbar-nav">
                       <li>System Identification</li>
                   </ul>
-                  
               </div>
           </nav>
           
@@ -90,7 +91,7 @@
                             selectionMarkerFill: "rgba(45, 62, 79,0.15)"
                         },
                    title: {text: ''},
-                   xAxis: { title: {text: "Frequency (Hz)"},type: "logarithmic",},
+                   xAxis: {title: {text: "Frequency (Hz)"},type: "logarithmic",},
                    yAxis: [{title:{text:"module"},type: "logarithmic"},
                            {title:{text:"phase"},opposite: true}
                            ],
