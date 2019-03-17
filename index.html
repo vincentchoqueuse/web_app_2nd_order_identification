@@ -48,10 +48,10 @@
                       <div id="chart_ui" style="display:inline;">
                           <button class="btn btn-outline-secondary ui_home"><i class="fas fa-home"></i></button>
                           <div class="btn-group btn-group-toggle ui_tool" data-toggle="buttons">
-                              <label class="btn btn-outline-secondary active">
+                              <label class="btn btn-outline-secondary ">
                                   <input type="radio" name="options" value="zoom" autocomplete="off" class="radioClass" checked><i class="fas fa-search"></i>
                              </label>
-                              <label class="btn btn-outline-secondary">
+                              <label class="btn btn-outline-secondary active">
                                   <input type="radio" name="options" value="marker" autocomplete="off" class="radioClass"> <i class="fas fa-crosshairs"></i>
                               </label>
                           </div>
@@ -81,7 +81,7 @@
           $(function () {
             var myChart = Highcharts.chart("chart_container",
                 {
-                   chart: {type: 'line',zoomType: "xy",
+                   chart: {type: 'line',zoomType: null,
                             resetZoomButton: {theme: {display: 'none'}},
                             selectionMarkerFill: "rgba(45, 62, 79,0.15)"
                         },
@@ -92,7 +92,7 @@
                            ],
                    series: [{
                             animation: false,
-                            enableMouseTracking: false,
+                            enableMouseTracking: true,
                             name: "Amplitude",
                             yAxis: 0,
                             color: "#e26856",
@@ -100,7 +100,7 @@
                             },
                             {
                             animation: false,
-                            enableMouseTracking: false,
+                            enableMouseTracking: true,
                             name: "Phase (deg)",
                             color: "#EF889D",
                             yAxis: 1,
@@ -126,7 +126,7 @@
                             module.push([parseFloat(data[0]),parseFloat(data[1])]);
                             argument.push([parseFloat(data[0]),parseFloat(data[2])]);
                             }
-                        myChart.series[0].update({data: module}, true);
+                        myChart.series[0].update({data: module}, false);
                         myChart.series[1].update({data: argument}, true);
                         }
                       });
