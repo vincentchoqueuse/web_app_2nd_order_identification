@@ -55,5 +55,5 @@ for indice in range(len(system_list)):
     w,T=system.freqresp(2*np.pi*f)
     filename="../data/data{}.csv".format(indice)
     header="f, module, argument"
-    data=np.transpose([w,np.abs(T),np.angle(T)])
+    data=np.transpose([f,np.abs(T),180*np.angle(T)/np.pi])
     np.savetxt(filename,data,header=header, delimiter=",",comments="")
