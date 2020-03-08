@@ -10,7 +10,7 @@ w, mag, phase = sys.bode(w=np.logspace(2,4,1000))
 export_bode("../data/data0.csv",w,mag,phase)
 
 #system2
-sys = LP(10,2,100)
+sys = LP(-10,2,100)
 w, mag, phase = sys.bode(w=np.logspace(1,4,1000))
 export_bode("../data/data1.csv",w,mag,phase)
 
@@ -25,12 +25,12 @@ w, mag, phase = sys.bode(w=np.logspace(1,4,1000))
 export_bode("../data/data3.csv",w,mag,phase)
 
 #system5
-sys = HP(4,0.1,100)
+sys = HP(-4,0.1,100)
 w, mag, phase = sys.bode(w=np.logspace(0,5,1000))
 export_bode("../data/data4.csv",w,mag,phase)
 
 #system6
-sys = BP(0.5,0.25,2000)
+sys = BP(-0.5,0.25,2000)
 w, mag, phase = sys.bode(w=np.logspace(2,5,1000))
 export_bode("../data/data5.csv",w,mag,phase)
 
@@ -46,7 +46,7 @@ export_bode("../data/data7.csv",w,mag,phase)
 
 
 #system7
-sys = Notch(10,5,100)
+sys = Notch(-10,5,100)
 w, mag, phase = sys.bode(w=np.logspace(1,4,1000))
 export_bode("../data/data8.csv",w,mag,phase)
 
@@ -56,6 +56,6 @@ w, mag, phase = sys.bode(w=np.logspace(2,4,1000))
 export_bode("../data/data9.csv",w,mag,phase)
 
 #system7
-sys = Notch(2,0.9,100)
+sys = Notch(-2,0.9,100)
 w, mag, phase = sys.bode(w=np.logspace(1,4,1000))
 export_bode("../data/data10.csv",w,mag,phase)

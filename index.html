@@ -71,19 +71,6 @@
       <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
       <script src="./dist/custom.js" ></script>
       <script>
-
-          /*
-    var layout = {
-          grid: {
-            rows: 1,
-            columns: 2,
-            pattern: 'independent'
-          },
-          xaxis: { type: 'log',autorange: true},
-          yaxis: {type: 'log',autorange: true},
-          yaxis2: {type: 'linear',autorange: true},
-      };
-           */
       
       var layout = {
         yaxis: {type: 'log',autorange: true, zeroline :false},
@@ -121,21 +108,14 @@
           };
           xhr.open('GET',filename);
           xhr.send();
-          
       }
-      
       
           
     document.addEventListener("DOMContentLoaded",function(){
                               
             chart = document.getElementById("chart");
-                              
-            var elem = document.getElementById("file_selector");
-
             plot( "data/data0.csv")
-          
             document.addEventListener("input", function (event) {
-                    
                     if (event.target.id == "file_selector")
                         {
                         plot(event.target.value)
