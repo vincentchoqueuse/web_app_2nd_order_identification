@@ -1,4 +1,5 @@
 from ENIB_lib import *
+import numpy as np
 
 system_list=[]
 freq_list=[]
