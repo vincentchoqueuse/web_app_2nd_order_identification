@@ -59,3 +59,9 @@ export_bode("../data/data9.csv",w,mag,phase)
 sys = Notch(-2,0.9,100)
 w, mag, phase = sys.bode(w=np.logspace(1,4,1000))
 export_bode("../data/data10.csv",w,mag,phase)
+
+
+#system11
+sys = HP(4,0.1,530)
+w, mag, phase = sys.bode(w=np.logspace(1,4,1000))
+export_bode("../data/data11.csv",w, mag, phase)
