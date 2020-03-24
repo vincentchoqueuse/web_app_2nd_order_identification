@@ -41,7 +41,7 @@ export_bode("../data/data6.csv",w,mag,phase)
 
 #system7
 sys = BP(5,4,200)
-w, mag, phase = sys.bode(w=np.logspace(2,5,1000))
+w, mag, phase = sys.bode(w=np.logspace(-1,5,1000))
 export_bode("../data/data7.csv",w,mag,phase)
 
 
